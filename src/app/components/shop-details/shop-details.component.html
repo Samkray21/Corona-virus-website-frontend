@@ -1,0 +1,41 @@
+<div class="row">
+    
+    <div class="col-lg-3">
+        <app-book-category></app-book-category>
+    </div>
+
+    <!-- master details for book -->
+    <div class="col-lg-9">
+
+        <div class="row">
+
+            <!-- To display the image -->
+            <div class="col-12 col-md-4">
+
+                <div class="thumbnail">
+                    <img src="{{shop.imageUrl}}" width="250" height="200" alt="" />
+                </div>
+
+            </div>
+
+            <!-- To display the book info -->
+            <div class="col-12 col-md-8">
+
+                <h3>{{shop.name}}</h3>
+                <hr/>
+
+                <p>{{shop.description}}</p>
+                <hr/>
+
+                <a class="btn btn-success" (click)="backClicked()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>

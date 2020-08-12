@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+@font-face{
+font-family: 'Roboto Mono';
+src: url(/assets/fonts/Roboto_Mono/RobotoMono-Regular.ttf) format("truetype");
+
+}
+
+
+h1{
+    font-family: 'Roboto Mono';
+}
+
+body {
+    padding-top: 56px;
+  }
+
+
+body, html{
+    height: 100%;
+}
+
+.footer{
+    position: absolute;
+    bottom: 10px;
+    height: 60px;
+}
+.wrapper{
+    min-height: 100%;
+    position: relative;
+
+}
+
+.content{
+    padding-bottom: 100px;
+}
+
+.likebtn {
+    height: 50px;
+    width: 50px;
+    /* opacity: 0.2; */
+
+}
+
+.disbtn {
+    height: 50px;
+    width: 50px;  
+}
+
+.txtnumberdislike {
+    position: relative;
+     top: -2vh; 
+    right: -0.7vh; 
+    color: #c02537;
+    font-weight: bold;
+}
+
+.txtnumberdlike {
+    position: relative;
+     top: -2vh; 
+    right: -0.7vh; 
+    color: green;
+    font-weight: bold;
+}
+
+a.txtnumberdlike {
+    color: green; 
+}
+
+a.txtnumberdlike:hover { 
+    color: green;
+ }
+
+ a.txtnumberdislike {
+    color: #c02537;
+}
+
+a.txtnumberdislike:hover { 
+    color: #c02537;
+ }
+
+ input:disabled {
+    background-color: grey;
+    pointer-events: none;
+
+    
+}

@@ -6,8 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { BookListComponent } from './components/book-list/book-list.component';
-import { BookService } from './services/book.service';
+import { ShopListComponent } from './components/shop-list/shop-list.component';
+import { ShopService } from './services/shop.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ShopCategoryComponent } from './components/shop-category/shop-category.component';
 
@@ -21,12 +21,12 @@ import { AboutComponent } from './components/about/about.component';
 
 
 const routes: Routes = [
-  {path: 'books', component: BookListComponent},
-  {path: 'category/:id', component: BookListComponent},
-  {path: 'books/:id', component: ShopDetailsComponent},
-  {path: 'search/:keyword', component: BookListComponent},
+  {path: 'shops', component: ShopListComponent},
+  {path: 'category/:id', component: ShopListComponent},
+  {path: 'shops/:id', component: ShopDetailsComponent},
+  {path: 'search/:keyword', component: ShopListComponent},
   {path: 'about', component: AboutComponent},
-  {path: '', redirectTo: '/books', pathMatch: 'full'},
+  {path: '', redirectTo: '/shops', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -37,7 +37,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    BookListComponent,
+    ShopListComponent,
     PageNotFoundComponent,
     ShopCategoryComponent,
     ShopDetailsComponent,
@@ -52,7 +52,7 @@ const routes: Routes = [
     JwPaginationModule
   ],
   providers: [
-    BookService
+    ShopService
   ],
   bootstrap: [AppComponent]
 })

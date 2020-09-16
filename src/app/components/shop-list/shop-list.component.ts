@@ -1,20 +1,18 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Shop } from 'src/app/common/shop';
-import { BookService } from 'src/app/services/book.service';
+import { ShopService } from 'src/app/services/shop.service';
 import { ActivatedRoute } from '@angular/router';
 import { Global } from 'src/app/common/global';
-import { THIS_EXPR, ConditionalExpr } from '@angular/compiler/src/output/output_ast';
-import { JwPaginationComponent } from 'jw-angular-pagination';
+
 
 
 @Component({
-  selector: 'app-book-list',
-  //templateUrl: './book-list.component.html',
-  templateUrl: './book-grid.component.html',
-  styleUrls: ['./book-list.component.css']})
+  selector: 'app-shop-list',
+  templateUrl: './shop-grid.component.html',
+  styleUrls: ['./shop-list.component.css']})
 
 
-export class BookListComponent implements OnInit {
+export class ShopListComponent implements OnInit {
 
   shops: Shop[] = [ ];
   shop: Shop = new Shop();
@@ -24,32 +22,35 @@ export class BookListComponent implements OnInit {
   items = [];
   pageOfItems: Array<Shop>;
 
-  constructor(private _bookService: BookService, 
+  constructor(private _shopService: ShopService, 
               private _activatedRoute: ActivatedRoute) { }
             
     onChangePage(pageOfItems: Array<Shop>) {
         // update current page of items
         let localStorageItem = JSON.parse(localStorage.getItem('enable'));
         this.pageOfItems = pageOfItems;
-        localStorageItem.forEach(element => {
+        if(localStorageItem!= null){
+          localStorageItem.forEach(element => {
             this.buutons(Number(element));
      });
+        }
+ 
     }
 
 
   ngOnInit(): void {    
-
     this._activatedRoute.paramMap.subscribe(()=>{
-      this.listBooks();
+      this.listShops();
     })
-
+    
     let localStorageItem = JSON.parse(localStorage.getItem('enable'));
-
+    if(localStorageItem!= null){
     localStorageItem.forEach(element => {
            if (!this.global.localStorageString.includes(element)){
                  this.global.localStorageString.push(element);
         } 
       });
+    }
 
   }
 
@@ -61,11 +62,11 @@ export class BookListComponent implements OnInit {
     localStorage.setItem('enable', JSON.stringify(this.global.localStorageString));
   }
 
-listBooks(){
+listShops(){
   const hasCategoryId: boolean = this._activatedRoute.snapshot.paramMap.has('id');
   if(hasCategoryId){
     this.currentCategoryId = +this._activatedRoute.snapshot.paramMap.get('id');
-    this._bookService.getBooks(this.currentCategoryId).subscribe(
+    this._shopService.getShops(this.currentCategoryId).subscribe(
       data => {this.shops = data;
       console.log(data);
       this.shops.forEach(element => {
@@ -79,10 +80,9 @@ listBooks(){
       });
     })
   }else{
-   this._bookService.getAllBooks().subscribe(
+   this._shopService.getAllShops().subscribe(
     data => {this.shops = data;
     console.log(data);
-  
     this.buutons(null);
   })
 }
@@ -90,7 +90,6 @@ listBooks(){
 }
 
 buutons(id){
-  ///const hasCategoryId: boolean = this._activatedRoute.snapshot.paramMap.has('id');
   const hasCategoryId: boolean = this._activatedRoute.snapshot.paramMap.has('id');
 
   let localStorageItem = JSON.parse(localStorage.getItem('enable'));
@@ -105,12 +104,10 @@ buutons(id){
                  this.global.localStorageString.push(element);
         }
          this.disableButton(Number(element));
- 
       });
 
     }else{
       this.disableButton(Number(id));
-
     }
 
 }, 200)
@@ -122,13 +119,12 @@ like(id) {
   console.log(localStorageItem);
   this.disableButton(id);
  new Promise((resolve, reject) => {
-  this._bookService.get(id).subscribe(
+  this._shopService.get(id).subscribe(
     data => {this.shop = data;
-      //this.global.localStorageString.push(this.book.id);
       document.getElementById('shoplikes' + String(this.shop.id)).innerHTML = String(this.shop.likes + 1);
       this.setLocalStorage(this.shop.id);
       this.shop.likes = this.shop.likes + 1;
-      this._bookService.updateLikeCounter(this.shop, this.shop.id);
+      this._shopService.updateLikeCounter(this.shop, this.shop.id);
     }
   )}
   );
@@ -137,13 +133,12 @@ like(id) {
 dislike(id) {
   this.disableButton(id);
   new Promise((resolve, reject) => {
-  this._bookService.get(id).subscribe(
+  this._shopService.get(id).subscribe(
     data => {this.shop = data;
-      //this.global.localStorageString.push(this.book.id);
       document.getElementById('shopdislikeslikes' + String(this.shop.id)).innerHTML = String(this.shop.dislike + 1);
       this.setLocalStorage(this.shop.id);
       this.shop.dislike = this.shop.dislike + 1;
-      this._bookService.updateLikeCounter(this.shop, this.shop.id);
+      this._shopService.updateLikeCounter(this.shop, this.shop.id);
     }
   )
   });
@@ -158,7 +153,5 @@ disableButton(id){
     likeButton.style.opacity = "0.2";
     likeButton.style.pointerEvents = "none";
   }
-
 }
-
 }

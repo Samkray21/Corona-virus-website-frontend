@@ -31,7 +31,7 @@
     "@progress/kendo-theme-default": "^4.23.0",
     "body-parser": "*",
     "bootstrap": "^4.5.2",
-    "express": "*",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
     "js-map-label": "^1.0.1",
     "jw-angular-pagination": "^1.2.0",

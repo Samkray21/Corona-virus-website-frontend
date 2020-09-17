@@ -29,7 +29,7 @@
     "@progress/kendo-angular-l10n": "^2.0.2",
     "@progress/kendo-angular-popup": "^3.0.6",
     "@progress/kendo-theme-default": "^4.23.0",
-    "body-parser": "*",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",
     "express": "^4.17.1",
     "jquery": "^3.5.1",

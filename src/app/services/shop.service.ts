@@ -11,8 +11,8 @@ import { ShopCategory } from '../common/shop-category';
 })
 export class ShopService {
 
-private baseUrl = "http://localhost:8080/api/v1/shops";
-private categoryUrl = "http://localhost:8080/api/v1/shop-category";
+private baseUrl = "https://corona-support-spring.herokuapp.com/api/v1/shops";
+private categoryUrl = "https://corona-support-spring.herokuapp.com/api/v1/shop-category";
 
 
 

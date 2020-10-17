@@ -35,8 +35,7 @@ export class ShopDetailsComponent implements OnInit {
     const id: number = +this._activatedRoute.snapshot.paramMap.get('id');
 
     this._shopService.get(id).subscribe(
-        data => {this.shop = data;
-        console.log(data);}
+        data => {this.shop = data;}
       )
 
 

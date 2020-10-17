@@ -68,13 +68,8 @@ listShops(){
     this.currentCategoryId = +this._activatedRoute.snapshot.paramMap.get('id');
     this._shopService.getShops(this.currentCategoryId).subscribe(
       data => {this.shops = data;
-      console.log(data);
       this.shops.forEach(element => {
-        console.log(this.global.localStorageString);
-        console.log(String(element.id));
-
         if(this.global.localStorageString.includes(String(element.id))){
-          console.log(this.global.localStorageString.includes(String(element.id)));
           this.buutons(element.id);
         }
       });
@@ -82,7 +77,6 @@ listShops(){
   }else{
    this._shopService.getAllShops().subscribe(
     data => {this.shops = data;
-    console.log(data);
     this.buutons(null);
   })
 }
@@ -99,7 +93,6 @@ buutons(id){
     if (localStorageItem==null){
     }else if(!hasCategoryId){
       localStorageItem.forEach(element => {
-      console.log(localStorageItem);
            if (!this.global.localStorageString.includes(element)){
                  this.global.localStorageString.push(element);
         }
@@ -116,7 +109,6 @@ buutons(id){
 like(id) {
   // this.setLocalStorage(id);
   let localStorageItem = JSON.parse(localStorage.getItem('enable'));
-  console.log(localStorageItem);
   this.disableButton(id);
  new Promise((resolve, reject) => {
   this._shopService.get(id).subscribe(

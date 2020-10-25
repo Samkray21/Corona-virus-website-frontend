@@ -1,6 +1,14 @@
-# AngularBookstore
+# Corona Virus Support Site
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+This website lists companies that have supported the general public in some way during the Corona Virus pandemic.
+
+Select any company on the list and a description of how that company has contributed positively during the pandemic will appear.
+
+Each user has the option to like or dislike any company they agree/disagree with being on the list.
+
+The companies are listed in order of most to least liked. 
+
+This calls a Java Spring backend api which can be found here: https://github.com/Samkray21/Corona-Virus-Website-Backend 
 
 ## Development server
 
